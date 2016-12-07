@@ -285,7 +285,7 @@ static void set_ir_encode(struct prop *prop, void *arg, void *valp, size_t len)
 #endif /* DEMO_IR */
 
 struct prop prop_table[] = {
-	{ "Blue_button", ATLV_BOOL, NULL, send_prop_with_meta,
+	{ "Blue_button", ATLV_BOOL, NULL, prop_send_generic,
 	    &blue_button, sizeof(blue_button), AFMT_READ_ONLY},
 #define PROP_BUTTON 0
 	{ "output", ATLV_INT, NULL, prop_send_generic, &output,
@@ -303,6 +303,8 @@ struct prop prop_table[] = {
 	    (void *)(1 << LED0_PIN), 1},
 	{ "Green_LED", ATLV_BOOL, set_led, send_led,
 	    (void *)(1 << LED1_PIN), 1},
+	{ "Red_LED", ATLV_BOOL, set_led, send_led,
+	    (void *)(1 << LED2_PIN), 1},
 #ifdef DEMO_SCHED_LIB
 	{ "schedule_in", ATLV_SCHED, set_schedule_in, NULL, &schedule_in},
 	{ "schedule_out", ATLV_SCHED, NULL, send_schedule, NULL, 0,
